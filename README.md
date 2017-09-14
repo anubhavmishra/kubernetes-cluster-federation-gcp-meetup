@@ -6,8 +6,9 @@ In this tutorial we will create the following:
 
 * A federated config map
 * A federated secret
-* A federated service
 * A federated replica set
+* A federated service
+* A federated ingress
 
 ## Prerequisite
 
