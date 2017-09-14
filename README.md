@@ -4,8 +4,6 @@ This tutorial assumes that you have Kubernetes cluster federation already setup 
 
 In this tutorial we will create the following:
 
-* A federated config map
-* A federated secret
 * A federated replica set
 * A federated service
 * A federated ingress
@@ -42,52 +40,6 @@ for cluster in ${CLUSTERS}; do
   echo "${cluster}"
   echo "---------------"
   kubectl --context=${cluster} get pods
-done
-```
-
-## Config Map
-
-```bash
-kubectl apply -f configmap.yaml
-```
-
-List all config maps in all clusters
-
-```bash
-CLUSTERS="asia-east1-b europe-west1-b us-east1-b us-central1-b"
-```
-
-```bash
-for cluster in ${CLUSTERS}; do
-  echo ""
-  echo "${cluster}"
-  echo "---------------"
-  kubectl --context=${cluster} get configmaps
-done
-```
-
-## Secret
-
-```bash
-echo global-secrets-are-awesome > secret.txt
-```
-
-```bash
-kubectl create secret generic gcp-secret --from-file=password=./secret.txt
-```
-
-List `gcp-secret` secret in all clusters
-
-```bash
-CLUSTERS="asia-east1-b europe-west1-b us-east1-b us-central1-b"
-```
-
-```bash
-for cluster in ${CLUSTERS}; do
-  echo ""
-  echo "${cluster}"
-  echo "---------------"
-  kubectl --context=${cluster} get secrets gcp-secret
 done
 ```
 

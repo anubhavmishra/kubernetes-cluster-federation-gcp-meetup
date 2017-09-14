@@ -10,22 +10,10 @@ spec:
         app: gcp-meetup-global
     spec:
       containers:
-      - image: anubhavmishra/gcp-meetup
+      - image: lkysow/gcp-meetup
         name: gcp-meetup-global
         env:
-        - name: CONFIG
-          valueFrom:
-            configMapKeyRef:
-              name: gcp-meetup
-              key: date
-        - name: SECRET
-          valueFrom:
-            secretKeyRef:
-              name: gcp-secret
-              key: password
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: USELESS
-          value: what
