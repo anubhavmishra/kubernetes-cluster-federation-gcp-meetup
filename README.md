@@ -94,7 +94,7 @@ done
 ## Replica Set
 
 ```bash
-kubectl create -f replicaset.yaml
+kubectl create -f replica-set.yaml
 ```
 
 List replica set
