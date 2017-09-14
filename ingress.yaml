@@ -7,4 +7,4 @@ metadata:
 spec:
   backend:
     serviceName: gcp-meetup-global
-    servicePort: 80
+    servicePort: http

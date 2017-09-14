@@ -12,6 +12,14 @@ spec:
       containers:
       - image: lkysow/gcp-meetup
         name: gcp-meetup-global
+        readinessProbe:
+          httpGet:
+            path: /hello
+            port: 8080
+          periodSeconds: 1
+          timeoutSeconds: 1
+          successThreshold: 1
+          failureThreshold: 10
         env:
         - name: CONFIG
           valueFrom:

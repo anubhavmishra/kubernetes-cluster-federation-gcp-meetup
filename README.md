@@ -118,6 +118,27 @@ for cluster in ${CLUSTERS}; do
 done
 ```
 
+Change replica count to `4`
+
+```bash
+kubectl scale rs gcp-meetup-global --replicas=4
+```
+
+Get pods in replica set
+
+```bash
+CLUSTERS="asia-east1-b europe-west1-b us-east1-b us-central1-b"
+```
+
+```bash
+for cluster in ${CLUSTERS}; do
+  echo ""
+  echo "${cluster}"
+  echo "---------------"
+  kubectl --context=${cluster} get pods
+done
+```
+
 ## Service
 
 ```bash
@@ -137,7 +158,7 @@ for cluster in ${CLUSTERS}; do
   echo ""
   echo "${cluster}"
   echo "---------------"
-  kubectl --context=${cluster} describe services nginx
+  kubectl --context=${cluster} describe services gcp-meetup-global
 done
 ```
 
