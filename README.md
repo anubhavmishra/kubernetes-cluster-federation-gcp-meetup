@@ -70,27 +70,6 @@ for cluster in ${CLUSTERS}; do
 done
 ```
 
-Change replica count to `4`
-
-```bash
-kubectl scale rs gcp-meetup-global --replicas=4
-```
-
-Get pods in replica set
-
-```bash
-CLUSTERS="asia-east1-b europe-west1-b us-east1-b us-central1-b"
-```
-
-```bash
-for cluster in ${CLUSTERS}; do
-  echo ""
-  echo "${cluster}"
-  echo "---------------"
-  kubectl --context=${cluster} get pods
-done
-```
-
 ## Service
 
 ```bash
@@ -145,5 +124,44 @@ for cluster in ${CLUSTERS}; do
   echo "${cluster}"
   echo "---------------"
   kubectl --context=${cluster} describe ingress gcp-meetup-global
+done
+```
+
+## Let's generate some traffic
+
+```bash
+gcloud compute ssh gcp-meetup-asia-east1 --zone=asia-east1-b
+
+gcloud compute ssh gcp-meetup-europe-west1 --zone=europe-west1-b
+
+gcloud compute ssh gcp-meetup-us-west1 --zone=us-west1-b
+
+gcloud compute ssh  gcp-meetup-us-east1 --zone=us-east1-b
+```
+
+```bash
+ab -n 100000 -c 10 http://35.201.87.58/
+```
+
+## Scale up
+
+Change replica count to `4`
+
+```bash
+kubectl scale rs gcp-meetup-global --replicas=4
+```
+
+Get pods in replica set
+
+```bash
+CLUSTERS="asia-east1-b europe-west1-b us-east1-b us-central1-b"
+```
+
+```bash
+for cluster in ${CLUSTERS}; do
+  echo ""
+  echo "${cluster}"
+  echo "---------------"
+  kubectl --context=${cluster} get pods
 done
 ```
