@@ -142,7 +142,7 @@ done
 ## Service
 
 ```bash
-kubectl create -f service.yaml
+kubectl apply -f service.yaml
 ```
 
 List service
@@ -163,6 +163,17 @@ done
 ```
 
 ## Ingress
+
+```bash
+gcloud compute addresses create gcp-meetup-global-ingress --global
+```
+
+```bash
+gcloud compute firewall-rules create \
+  federated-ingress-firewall-rule \
+  --source-ranges 130.211.0.0/22 \
+  --allow tcp:30015 --network default
+```
 
 ```bash
 kubectl create -f ingress.yaml

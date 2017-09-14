@@ -10,6 +10,7 @@ spec:
     protocol: TCP
     targetPort: 8080
     name: http
+    nodePort: 30015
   selector:
     app: gcp-meetup-global
-  type: LoadBalancer
+  type: NodePort

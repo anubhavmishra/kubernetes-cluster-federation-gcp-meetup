@@ -2,9 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: federation
+    kubernetes.io/ingress.global-static-ip-name: gcp-meetup-global-ingress
   name: gcp-meetup-global
 spec:
   backend:
     serviceName: gcp-meetup-global
-    servicePort: http
+    servicePort: 80
